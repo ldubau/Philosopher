@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 11:16:07 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/17 11:19:04 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/17 16:01:08 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	init_philo(t_table *table)
 	int	i;
 
 	i = 0;
-	table->end_simulation = false;
 	table->philos = malloc (sizeof(t_philo) * table->philo_nbr);
 	if (!table->philos)
 		return (0);
@@ -70,7 +69,7 @@ int	init_data(t_table *table)
 	check = init_forks(table);
 	if (check == 0)
 		return (0);
-	
+	// table->start_simulation = 5;
 	return (1);
 }
 

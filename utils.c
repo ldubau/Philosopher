@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:19:58 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/17 11:11:53 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/17 15:18:24 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ int	free_all(t_table *table, int n)
 	int i;
 
 	i = 0;
-	if (table->philos)
-		free(table->philos);
-	if (table->forks)
-		free(table->forks);
-	return (0);
 	while (i < n)
 	{
 		pthread_mutex_destroy(&table->forks[i].fork);
 		i++;
 	}
+	if (table->philos)
+		free(table->philos);
+	if (table->forks)
+		free(table->forks);
+	return (0);
 }
 
 
