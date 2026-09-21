@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:19:58 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/17 15:18:24 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/20 12:16:09 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../header/philo.h"
 
 long	ft_atol(char *str)
 {
@@ -35,6 +35,8 @@ int	is_digit(char *s)
 	int	i;
 
 	i = 0;
+	if (!s[0])
+		return (0);
 	while (s[i])
 	{
 		if (s[i] < '0' || s[i] > '9')
@@ -60,5 +62,3 @@ int	free_all(t_table *table, int n)
 		free(table->forks);
 	return (0);
 }
-
-

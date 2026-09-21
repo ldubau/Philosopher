@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/14 15:57:43 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/17 10:57:23 by leonpouet        ###   ########.fr       */
+/*   Created: 2026/09/17 17:42:21 by leonpouet         #+#    #+#             */
+/*   Updated: 2026/09/20 13:22:17 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../header/philo.h"
 
-int	parsing(t_table *table, char **av)
+long	get_time_ms(void)
 {
-	int	i;
+	struct timeval	tv;
 
-	i = 1;
-	while (av[i])
-	{
-		if (!is_digit(av[i]))
-			return (0);
-		i++;
-	}
-	table->philo_nbr = ft_atol(av[1]);
-	table->time_to_die = ft_atol(av[2]);
-	table->time_to_eat = ft_atol(av[3]);
-	table->time_to_sleep = ft_atol(av[4]);
-	if (av[5])
-		table->max_meals = ft_atol(av[5]);
-	else
-		table->max_meals = -1;
-	return (1);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	ft_usleep(long ms)
+{
+	long	start;
+
+	start = get_time_ms();
+	while (get_time_ms() - start < ms)
+		usleep(500);
 }
