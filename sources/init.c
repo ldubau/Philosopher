@@ -6,7 +6,7 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 11:16:07 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 15:24:59 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 15:34:38 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ int	init_forks(t_table *table)
 	{
 		table->philos[i].right_fork = &table->forks[i];
 		if (table->philo_nbr == 1)
-			return (1);
-		table->philos[i].left_fork = &table->forks[(i + 1) % table->philo_nbr];
+			table->philos[i].left_fork = NULL;
+		else
+			table->philos[i].left_fork = &table->forks[(i + 1) % table->philo_nbr];
 		i++;
 	}
 	return (1);
@@ -64,7 +65,7 @@ int	init_mutex(t_table *table)
 {
 	if (pthread_mutex_init(&table->print_mutex, NULL))
 		return (0);
-	if (pthread_mutex_init(&table->print_mutex, NULL))
+	if (pthread_mutex_init(&table->sim_mutex, NULL))
 	{
 		pthread_mutex_destroy(&table->print_mutex);
 		return (0);

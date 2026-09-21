@@ -6,7 +6,7 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:19:58 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 15:21:14 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 15:53:30 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ long	ft_atol(char *str)
 	i = 0;
 	nbr = 0;
 	if (!str)
-		return (0);
+		return (-1);
 	while (str[i])
 	{
 		nbr *= 10;
+		if (nbr > INT_MAX)
+			return (-1);
 		nbr += (str[i] - '0');
 		i++;
 	}

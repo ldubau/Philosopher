@@ -6,7 +6,7 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 12:26:09 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 12:10:01 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 15:44:04 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int main(int ac, char **av)
 {
 	t_table	table;
-
 
 	if (ac != 5 && ac != 6)
 		return (1);
@@ -35,6 +34,6 @@ int main(int ac, char **av)
 		i++;
 	}
 
-	free_all(&table, table.philo_nbr); // clean_table / add all mutex
+	free_all(&table, table.philo_nbr, table.philo_nbr); // clean_table / add all mutex
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 15:41:45 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 15:12:40 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 15:38:22 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ typedef struct s_table
 long	ft_atol(char *str);
 int		is_digit(char *s);
 int		free_all(t_table *table, int n_philo, int n_fork);
+
+// TIME
+
 long	get_time_ms(void);
+void	ft_usleep(long ms);
 
 // PARSING
 
@@ -74,4 +78,8 @@ int	parsing(t_table *table, char **av);
 
 int		init_data(t_table *table);
 
-# endif
+// DINER
+
+void	dinner_start(t_table *table);
+
+#endif
