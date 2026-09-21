@@ -6,11 +6,20 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 11:50:02 by ldubau            #+#    #+#             */
-/*   Updated: 2026/09/21 15:30:47 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 17:56:00 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	eat(t_table *table)
+{
+	pthread_mutex_lock(&);
+	pthread_mutex_lock(&);
+
+	pthread_mutex_unlock(&);
+	pthread_mutex_unlock(&);
+}
 
 void	dinner_start(t_table *table)
 {

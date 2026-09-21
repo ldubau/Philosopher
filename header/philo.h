@@ -6,7 +6,7 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 15:41:45 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 15:38:22 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 17:56:41 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ int		free_all(t_table *table, int n_philo, int n_fork);
 long	get_time_ms(void);
 void	ft_usleep(long ms);
 
+// MUTEX
+
+bool	mtx_sim(t_table *table);
+void	mtx_printf(t_philo *philo, char *msg);
+
 // PARSING
 
 int	parsing(t_table *table, char **av);
@@ -81,5 +86,6 @@ int		init_data(t_table *table);
 // DINER
 
 void	dinner_start(t_table *table);
+void	eat(t_table *table);
 
 #endif

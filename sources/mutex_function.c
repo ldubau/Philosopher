@@ -6,7 +6,7 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 11:54:00 by ldubau            #+#    #+#             */
-/*   Updated: 2026/09/21 17:39:30 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 17:55:54 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,4 @@ void	mtx_printf(t_philo *philo, char *msg)
 		printf("%ld %d %s\n", time, philo->id, msg);
 	}
 	pthread_mutex_unlock(&philo->table->print_mutex);
-}
-
-void	mtx_take_fork(t_table *table)
-{
-	pthread_mutex_lock(&table->forks->fork);
-	// action
-	pthread_mutex_unlock(&table->forks->fork);
 }
