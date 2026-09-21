@@ -6,15 +6,20 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 11:54:00 by ldubau            #+#    #+#             */
-/*   Updated: 2026/09/21 16:23:44 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 17:39:30 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	mtx_sim(t_table *table)
+bool	mtx_sim(t_table *table)
 {
+	bool	ret;
 
+	pthread_mutex_lock(&table->sim_mutex);
+	ret = table->end_simulation;
+	pthread_mutex_unlock(&table->sim_mutex);
+	return (ret);
 }
 
 void	mtx_printf(t_philo *philo, char *msg)
@@ -22,12 +27,17 @@ void	mtx_printf(t_philo *philo, char *msg)
 	long	time;
 
 	pthread_mutex_lock(&philo->table->print_mutex);
-	time = get_time_ms() - philo->table->start_simulation;
-	printf("%ld %d %s", time, philo->id, msg);
+	if (!mtx_sim(philo->table))
+	{
+		time = get_time_ms() - philo->table->start_simulation;
+		printf("%ld %d %s\n", time, philo->id, msg);
+	}
 	pthread_mutex_unlock(&philo->table->print_mutex);
 }
 
 void	mtx_take_fork(t_table *table)
 {
-
+	pthread_mutex_lock(&table->forks->fork);
+	// action
+	pthread_mutex_unlock(&table->forks->fork);
 }

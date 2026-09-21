@@ -6,7 +6,7 @@
 /*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 15:57:43 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 15:53:55 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/09/21 16:38:59 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parsing(t_table *table, char **av)
 	{
 		if (!is_digit(av[i]))
 			return (0);
-		if (atol(av[i]) < 1)
+		if (ft_atol(av[i]) < 1)
 			return (0);
 		i++;
 	}
