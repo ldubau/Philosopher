@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 15:41:45 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/17 17:40:51 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/21 10:53:01 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct s_philo
 {
 	int			id;
 	int			nbr_meal;
+	long		last_meal;
 	bool		full;
+	t_mtx		philo_mutex;
 	t_fork		*left_fork;
 	t_fork		*right_fork;
 	pthread_t	thread_id;
@@ -51,6 +53,8 @@ typedef struct s_table
 	long	max_meals;
 	long	start_simulation;
 	bool	end_simulation;
+	t_mtx	print_mutex;
+	t_mtx	sim_mutex;
 	t_fork	*forks;
 	t_philo	*philos;
 }	t_table;

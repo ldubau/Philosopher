@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 11:16:07 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/19 01:59:35 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/21 11:19:57 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	init_philo(t_table *table)
 		table->philos[i].full = false;
 		table->philos[i].nbr_meal = 0;
 		table->philos[i].table = table;
+		if (pthread_mutex_init(&table->philos[i].philo_mutex, NULL))
+			return (free_all(table, i));
 		i++;
 	}
 	return (1);
@@ -59,7 +61,9 @@ int	init_forks(t_table *table)
 int	init_data(t_table *table)
 {
 	int	check;
+	int	i;
 
+	i = 0;
 	table->forks = NULL;
 	table->philos = NULL;
 	table->end_simulation = false;
@@ -70,6 +74,7 @@ int	init_data(t_table *table)
 	if (check == 0)
 		return (0);
 	// table->start_simulation = 5;
+	while (i < table->philo_nbr)
+		table->philos[i++].last_meal = get_time_ms();
 	return (1);
 }
-

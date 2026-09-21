@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 12:26:09 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/19 15:02:54 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/21 09:56:19 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int main(int ac, char **av)
 	if (!parsing(&table, av))
 		return (1);
 
-	init_data(&table);
+	if (!init_data(&table))
+		return (1);
 
 	// dinner_start
 
