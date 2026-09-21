@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 15:41:45 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 10:53:01 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/21 15:12:40 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_table
 
 long	ft_atol(char *str);
 int		is_digit(char *s);
-int		free_all(t_table *table, int n);
+int		free_all(t_table *table, int n_philo, int n_fork);
 long	get_time_ms(void);
 
 // PARSING

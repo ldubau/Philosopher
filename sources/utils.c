@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:19:58 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/20 12:16:09 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/21 15:21:14 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,24 @@ int	is_digit(char *s)
 	return (1);
 }
 
-int	free_all(t_table *table, int n)
+int	free_all(t_table *table, int n_philo, int n_fork)
 {
 	int i;
 
 	i = 0;
-	while (i < n)
+	while (i < n_fork) // a refaire pour free les philo separement
 	{
 		pthread_mutex_destroy(&table->forks[i].fork);
 		i++;
 	}
+	i = 0;
+	while (i < n_philo) // a refaire pour free les philo separement
+	{
+		pthread_mutex_destroy(&table->philos[i].philo_mutex);
+		i++;
+	}
+	pthread_mutex_destroy(&table->print_mutex);
+	pthread_mutex_destroy(&table->sim_mutex);
 	if (table->philos)
 		free(table->philos);
 	if (table->forks)

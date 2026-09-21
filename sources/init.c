@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 11:16:07 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/09/21 11:19:57 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/09/21 15:24:59 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_philo(t_table *table)
 		table->philos[i].nbr_meal = 0;
 		table->philos[i].table = table;
 		if (pthread_mutex_init(&table->philos[i].philo_mutex, NULL))
-			return (free_all(table, i));
+			return (free_all(table, i, 0));
 		i++;
 	}
 	return (1);
@@ -40,11 +40,11 @@ int	init_forks(t_table *table)
 	i = 0;
 	table->forks = malloc (sizeof(t_fork) * table->philo_nbr);
 	if (!table->forks)
-		return (free_all(table, 0));
+		return (free_all(table, table->philo_nbr, 0));
 	while (i < table->philo_nbr)
 	{
 		if (pthread_mutex_init(&table->forks[i].fork, NULL))
-			return (free_all(table, i));
+			return (free_all(table, table->philo_nbr, i));
 		table->forks[i].fork_id = i;
 		i++;
 	}
@@ -52,8 +52,22 @@ int	init_forks(t_table *table)
 	while (i < table->philo_nbr)
 	{
 		table->philos[i].right_fork = &table->forks[i];
+		if (table->philo_nbr == 1)
+			return (1);
 		table->philos[i].left_fork = &table->forks[(i + 1) % table->philo_nbr];
 		i++;
+	}
+	return (1);
+}
+
+int	init_mutex(t_table *table)
+{
+	if (pthread_mutex_init(&table->print_mutex, NULL))
+		return (0);
+	if (pthread_mutex_init(&table->print_mutex, NULL))
+	{
+		pthread_mutex_destroy(&table->print_mutex);
+		return (0);
 	}
 	return (1);
 }
@@ -61,20 +75,19 @@ int	init_forks(t_table *table)
 int	init_data(t_table *table)
 {
 	int	check;
-	int	i;
 
-	i = 0;
 	table->forks = NULL;
 	table->philos = NULL;
 	table->end_simulation = false;
+	check = init_mutex(table);
+	if (check == 0)
+		return (0);
 	check = init_philo(table);
 	if (check == 0)
 		return (0);
 	check = init_forks(table);
 	if (check == 0)
 		return (0);
-	// table->start_simulation = 5;
-	while (i < table->philo_nbr)
-		table->philos[i++].last_meal = get_time_ms();
+
 	return (1);
 }
